@@ -4,22 +4,23 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:hostel_2/firebase_options.dart';
 
 // Ensure these match your project name in pubspec.yaml (hostel_2)
+import 'package:hostel_2/screens/login_selection_screen.dart';
 import 'package:hostel_2/screens/dashboard_screen.dart';
 import 'package:hostel_2/screens/rooms_screen.dart';
 import 'package:hostel_2/screens/students_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  
+
   try {
     // This MUST be called before any Firestore code
     await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
+      options: DefaultFirebaseOptions.currentPlatform,
     );
   } catch (e) {
     debugPrint("Firebase init error (check your configuration): $e");
   }
-  
+
   runApp(const DormFlowApp());
 }
 
@@ -46,7 +47,10 @@ class DormFlowApp extends StatelessWidget {
           ),
         ),
       ),
-      home: const MainNavigationScreen(),
+      initialRoute: '/',
+      routes: {
+        '/': (context) => const LoginSelectionScreen(),
+      },
     );
   }
 }
@@ -83,7 +87,7 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
 
       roomsRef = base.collection('rooms');
       studentsRef = base.collection('students');
-      
+
       setState(() {
         _isReady = true;
       });
@@ -113,7 +117,8 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
       ),
       bottomNavigationBar: NavigationBar(
         selectedIndex: _selectedIndex,
-        onDestinationSelected: (index) => setState(() => _selectedIndex = index),
+        onDestinationSelected: (index) =>
+            setState(() => _selectedIndex = index),
         destinations: const [
           NavigationDestination(
             icon: Icon(Icons.dashboard_outlined),

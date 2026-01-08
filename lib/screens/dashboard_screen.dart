@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../widgets/stat_card.dart';
+import 'package:hostel_2/screens/fee_settings_screen.dart';
 
 class DashboardScreen extends StatelessWidget {
   final CollectionReference roomsRef;
@@ -12,7 +13,29 @@ class DashboardScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Dashboard')),
+      appBar: AppBar(
+        title: const Text('Dashboard'),
+        actions: [
+          IconButton(
+            tooltip: 'Manage Fees',
+            icon: const Icon(Icons.attach_money),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const FeeSettingsScreen()),
+              );
+            },
+          ),
+          IconButton(
+            icon: const Icon(Icons.logout),
+            onPressed: () {
+              // Navigate back to LoginSelectionScreen and remove all previous routes
+              Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false);
+            },
+          ),
+        ],
+      ),
       body: StreamBuilder<QuerySnapshot>(
         stream: roomsRef.snapshots(),
         builder: (context, snapshot) {
@@ -65,6 +88,39 @@ class DashboardScreen extends StatelessWidget {
                       ),
                     ),
                   ],
+                ),
+                const SizedBox(height: 24),
+                Card(
+                  elevation: 2,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(16)),
+                  child: ListTile(
+                    contentPadding: const EdgeInsets.symmetric(
+                        horizontal: 20, vertical: 12),
+                    leading: Container(
+                      padding: const EdgeInsets.all(8),
+                      decoration: BoxDecoration(
+                        color: Colors.purple.withValues(alpha: 0.1),
+                        shape: BoxShape.circle,
+                      ),
+                      child:
+                          const Icon(Icons.attach_money, color: Colors.purple),
+                    ),
+                    title: const Text(
+                      "Manage Fee Structure",
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    subtitle: const Text(
+                        "Set annual fees for Single, Double, and Quad rooms"),
+                    trailing: const Icon(Icons.arrow_forward_ios, size: 16),
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const FeeSettingsScreen()),
+                      );
+                    },
+                  ),
                 ),
                 const SizedBox(height: 32),
                 const Text(
