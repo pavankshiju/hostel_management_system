@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "538127073098",
+    "project_id": "tech-sprint-62113",
+    "storage_bucket": "tech-sprint-62113.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:538127073098:android:6f47501eeea46397570bb3",
+        "android_client_info": {
+          "package_name": "com.example.hostel_2"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA_VEhFu3IRy8X1MUgozD3NgtL76312Mmg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:538127073098:android:1cb7d87a3d64922c570bb3",
+        "android_client_info": {
+          "package_name": "com.example.tech_sprint"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA_VEhFu3IRy8X1MUgozD3NgtL76312Mmg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
